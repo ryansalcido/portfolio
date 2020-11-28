@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     if(itemRef && itemRef.current) {
       window.scrollTo({
-        top: itemRef.current.offsetTop - 50,
+        top: itemRef.current.offsetTop - 54,
         behavior: "smooth"
       });
     }
