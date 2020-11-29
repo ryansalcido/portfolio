@@ -4,7 +4,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   profile: {
     paddingBottom: 25
   },
@@ -20,7 +20,7 @@ const ListItemIconLink = ({ href, title, children }) => {
   const classes = useStyles();
 
   return (
-    <ListItem button component="a" title={title} className={classes.iconLink} 
+    <ListItem button disableRipple component="a" title={title} className={classes.iconLink} 
       href={href} target="_blank" rel="noreferrer" disableGutters>
       <ListItemIcon>
         { children }

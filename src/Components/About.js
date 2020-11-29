@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 25
   },
   networkIconList: {
-    display: "flex"
+    display: "flex",
+    paddingLeft: 20
   },
   biographyHeading: {
     "&::after": {

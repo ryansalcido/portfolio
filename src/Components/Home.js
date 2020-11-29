@@ -21,7 +21,8 @@ const Home = () => {
   useEffect(() => {
     if(itemRef && itemRef.current) {
       window.scrollTo({
-        top: itemRef.current.offsetTop - 54,
+        //If value is equal to 0 (About tab), set top value to 0 (top of the page)
+        top: value === 0 ? 0 : itemRef.current.offsetTop - 54,
         behavior: "smooth"
       });
     }
