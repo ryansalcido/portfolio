@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.9.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,9 +25,25 @@
       "react-app/jest"
     ],
     "rules": {
-      "quotes": [ "error", "double" ],
-      "semi": [ "error", "always" ],
-      "eol-last": [ "error", "always" ]
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "eol-last": [
+        "error",
+        "always"
+      ]
     }
   },
   "browserslist": {
@@ -35,7 +55,7 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "ie 11"
     ]
   }
 }
