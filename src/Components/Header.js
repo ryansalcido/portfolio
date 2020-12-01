@@ -10,28 +10,29 @@ const useStyles = makeStyles(() => ({
     minHeight: 48,
     display: "flex",
     justifyContent: "center"
-  },
-  tabRoot: {
-    flexGrow: 1
-  },
-  headerList: {
-    display: "flex",
-    flexDirection: "row"
   }
 }));
 
-const Header = ({ value, handleChange }) => {
+const Header = ({ value, handleChange, sectionRefs }) => {
   const classes = useStyles();
+
+  const scrollTo = (ele) => {
+    window.scrollTo({
+      //If value is equal to 0 (About tab), set top value to 0 (top of the page)
+      top: ele.offsetTop - 54,
+      behavior: "smooth"
+    });
+  };
   
   return (
     <Fragment>
       <AppBar color="primary" position="fixed">
         <Toolbar className={classes.header}>
           <Tabs value={value} onChange={handleChange} variant="scrollable" indicatorColor="secondary">
-            <Tab label="About" />
-            <Tab label="Education" />
-            <Tab label="Experience" />
-            <Tab label="Projects" />
+            <Tab label="About" onClick={() => scrollTo(sectionRefs[0].ref.current)} />
+            <Tab label="Education" onClick={() => scrollTo(sectionRefs[1].ref.current)} />
+            <Tab label="Experience" onClick={() => scrollTo(sectionRefs[2].ref.current)} />
+            <Tab label="Projects" onClick={() => scrollTo(sectionRefs[3].ref.current)} />
           </Tabs>
         </Toolbar>
       </AppBar>

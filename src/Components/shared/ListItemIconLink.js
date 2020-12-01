@@ -16,15 +16,15 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ListItemIconLink = ({ href, title, children }) => {
+const ListItemIconLink = ({ href, title }) => {
   const classes = useStyles();
 
   return (
     <ListItem button disableRipple component="a" title={title} className={classes.iconLink} 
       href={href} target="_blank" rel="noreferrer" disableGutters>
-      <ListItemIcon>
-        { children }
-      </ListItemIcon>
+      {/* <ListItemIcon>
+        {children}
+      </ListItemIcon> */}
     </ListItem>
   );
 };
@@ -32,7 +32,7 @@ const ListItemIconLink = ({ href, title, children }) => {
 ListItemIconLink.propTypes = {
   href: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired
+  // children: PropTypes.element.isRequired
 };
 
 export default ListItemIconLink;
