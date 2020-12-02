@@ -1,17 +1,9 @@
-import React, { Fragment, useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import "./Home.css";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import About from "./About";
+import Header from "./Header";
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
-    height: 150,
-    paddingTop: 48
-  },
   root: {
     padding: theme.spacing(3)
   },
@@ -20,28 +12,15 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: 0
   },
-  header: {
-    minHeight: 48,
-    display: "flex",
-    justifyContent: "center"
-  },
-  selected: {
-    borderBottom: `3px solid ${theme.palette.secondary.main}`,
-    color: theme.palette.secondary.main
-  },
-  headerButton: {
-    borderRadius: 0,
-    padding: "6px 12px"
-  },
   section: {
     paddingTop: 48,
     height: 700
   }
 }));
 
-const getDimensions = ele => {
-  const { height } = ele.getBoundingClientRect();
-  const offsetTop = ele.offsetTop;
+const getDimensions = element => {
+  const { height } = element.getBoundingClientRect();
+  const offsetTop = element.offsetTop;
   const offsetBottom = offsetTop + height;
 
   return {
@@ -49,14 +28,6 @@ const getDimensions = ele => {
     offsetTop,
     offsetBottom,
   };
-};
-
-const scrollTo = ele => {
-  ele.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-    inline: "start"
-  });
 };
 
 const Home = () => {
@@ -82,16 +53,16 @@ const Home = () => {
   useEffect(() => {
     const handleScroll = () => {
       const { height: headerHeight } = getDimensions(headerRef.current);
-      /* window.scrollyY: Valid for modern browsers
+      /* window.scrollY: Valid for modern browsers
          document.documentElement.scrollTop: Valid for IE 11
       */
       const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
       const scrollPosition = scrollTop + headerHeight;
 
       const selected = sectionRefs.find(({ section, ref }) => {
-        const ele = ref.current;
-        if(ele) {
-          const { offsetBottom, offsetTop } = getDimensions(ele);
+        const element = ref.current;
+        if(element) {
+          const { offsetBottom, offsetTop } = getDimensions(element);
           return scrollPosition > offsetTop && scrollPosition < offsetBottom;
         }
         return false;
@@ -114,37 +85,8 @@ const Home = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar color="primary" position="fixed" ref={headerRef}>
-        <Toolbar className={classes.header}>
-          <Grid container justify="center">
-            <Button className={`${classes.headerButton} ${visibleSection === 0 && classes.selected}`}
-              onClick={() => scrollTo(aboutRef.current)}>
-              About
-            </Button>
-            <Button className={`${classes.headerButton} ${visibleSection === 1 && classes.selected}`}
-              onClick={() => scrollTo(educationRef.current)}>
-              Education
-            </Button>
-            <Button className={`${classes.headerButton} ${visibleSection === 2 && classes.selected}`}
-              onClick={() => scrollTo(experienceRef.current)}>
-              Experience
-            </Button>
-            <Button className={`${classes.headerButton} ${visibleSection === 3 && classes.selected}`}
-              onClick={() => scrollTo(projectsRef.current)}>
-              Projects
-            </Button>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      {/* Placeholder div due to having a fixed placement header. Without this, text would appear behind
-      * the header. More info: https://material-ui.com/components/app-bar/#fixed-placement
-      */}
-      <div className={classes.header} />
-
-      {/* <About ref={aboutRef} /> */}
-      <div className={classes.section} style={{backgroundColor: "red"}} ref={aboutRef}>
-        ABOUT
-      </div>
+      <Header ref={headerRef} sectionRefs={sectionRefs} visibleSection={visibleSection} />
+      <About ref={aboutRef} />
       <div className={classes.section} style={{backgroundColor: "#a388e8"}} ref={educationRef}>
         EDUCATION
       </div>
