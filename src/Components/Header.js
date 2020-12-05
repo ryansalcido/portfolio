@@ -6,6 +6,9 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
+  header: {
+    minHeight: 48
+  },
   toolbar: {
     minHeight: 48,
     display: "flex",
@@ -13,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerButton: {
     borderRadius: 0,
-    padding: "6px 12px"
+    textTransform: "none"
   },
   selected: {
     borderBottom: `3px solid ${theme.palette.secondary.main}`,
@@ -25,7 +28,7 @@ const scrollTo = element => {
   element.scrollIntoView({
     behavior: "smooth",
     block: "start",
-    inline: "start",
+    inline: "start"
   });
 };
 
@@ -42,7 +45,7 @@ const Header = forwardRef(({ sectionRefs, visibleSection }, ref) => {
 
   return (
     <Fragment>
-      <AppBar color="primary" position="fixed" ref={ref}>
+      <AppBar color="primary" position="fixed" ref={ref} className={classes.header}>
         <Toolbar className={classes.toolbar}>
           <Grid container justify="center">
             <Button className={`${classes.headerButton} ${visibleSection === 0 && classes.selected}`}
@@ -71,7 +74,7 @@ const Header = forwardRef(({ sectionRefs, visibleSection }, ref) => {
       {/* Placeholder div due to having a fixed header. Without this, text would appear behind
       * the header. More info: https://material-ui.com/components/app-bar/#fixed-placement
       */}
-      <div className={classes.toolbar} />
+      <div className={classes.header} />
     </Fragment>
   );
 });

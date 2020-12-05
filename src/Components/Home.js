@@ -8,6 +8,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3)
   },
+  nameHeader: {
+    [theme.breakpoints.down("md")]: {
+      fontSize: "9vw"
+    }
+  },
   bottomNav: {
     width: "100%",
     position: "fixed",
@@ -27,7 +32,7 @@ const getDimensions = element => {
   return {
     height,
     offsetTop,
-    offsetBottom,
+    offsetBottom
   };
 };
 
@@ -49,7 +54,7 @@ const Home = () => {
       { section: 1, ref: aboutRef },
       { section: 2, ref: educationRef },
       { section: 3, ref: experienceRef },
-      { section: 4, ref: projectsRef },
+      { section: 4, ref: projectsRef }
     ]
   ), []);
 
@@ -91,7 +96,7 @@ const Home = () => {
     <Fragment>
       <Header ref={headerRef} sectionRefs={sectionRefs} visibleSection={visibleSection} />
       <div className={classes.root}>
-        <Typography variant="h1" align="center" ref={homeRef}>
+        <Typography className={classes.nameHeader} variant="h1" align="center" ref={homeRef}>
           RYAN SALCIDO
         </Typography>
         <About ref={aboutRef} />
