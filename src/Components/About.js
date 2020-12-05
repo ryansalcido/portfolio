@@ -11,7 +11,7 @@ import ListItemIconLink from "./shared/ListItemIconLink";
 
 const useStyles = makeStyles((theme) => ({
   aboutRoot: {
-    paddingTop: 48,
+    paddingTop: 48
   },
   profile: {
     paddingBottom: 25

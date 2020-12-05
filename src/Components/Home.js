@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { Fragment, useState, useEffect, useMemo, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import About from "./About";
 import Header from "./Header";
 
@@ -36,6 +37,7 @@ const Home = () => {
   const [ visibleSection, setVisibleSection ] = useState();
 
   const headerRef = useRef(null);
+  const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const educationRef = useRef(null);
   const experienceRef = useRef(null);
@@ -43,10 +45,11 @@ const Home = () => {
 
   const sectionRefs = useMemo(() => (
     [
-      { section: 0, ref: aboutRef },
-      { section: 1, ref: educationRef },
-      { section: 2, ref: experienceRef },
-      { section: 3, ref: projectsRef },
+      { section: 0, ref: homeRef },
+      { section: 1, ref: aboutRef },
+      { section: 2, ref: educationRef },
+      { section: 3, ref: experienceRef },
+      { section: 4, ref: projectsRef },
     ]
   ), []);
 
@@ -57,7 +60,8 @@ const Home = () => {
          document.documentElement.scrollTop: Valid for IE 11
       */
       const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-      const scrollPosition = scrollTop + headerHeight;
+      //Add 24 to adjust for root padding
+      const scrollPosition = scrollTop + headerHeight + 24;
 
       const selected = sectionRefs.find(({ section, ref }) => {
         const element = ref.current;
@@ -84,19 +88,24 @@ const Home = () => {
   }, [ visibleSection, sectionRefs ]);
 
   return (
-    <div className={classes.root}>
+    <Fragment>
       <Header ref={headerRef} sectionRefs={sectionRefs} visibleSection={visibleSection} />
-      <About ref={aboutRef} />
-      <div className={classes.section} style={{backgroundColor: "#a388e8"}} ref={educationRef}>
-        EDUCATION
+      <div className={classes.root}>
+        <Typography variant="h1" align="center" ref={homeRef}>
+          RYAN SALCIDO
+        </Typography>
+        <About ref={aboutRef} />
+        <div className={classes.section} style={{backgroundColor: "#a388e8"}} ref={educationRef}>
+          EDUCATION
+        </div>
+        <div className={classes.section} style={{backgroundColor: "#e0c48f"}} ref={experienceRef}>
+          EXPERIENCE
+        </div>
+        <div className={classes.section} style={{backgroundColor: "#8face0"}} ref={projectsRef}>
+          PROJECTS
+        </div>
       </div>
-      <div className={classes.section} style={{backgroundColor: "#e0c48f"}} ref={experienceRef}>
-        EXPERIENCE
-      </div>
-      <div className={classes.section} style={{backgroundColor: "#8face0"}} ref={projectsRef}>
-        PROJECTS
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
