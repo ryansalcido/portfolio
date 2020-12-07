@@ -23,7 +23,7 @@ const ListItemIconLink = ({ href, title, children }) => {
     <ListItem button disableRipple component="a" title={title} className={classes.iconLink} 
       href={href} target="_blank" rel="noreferrer" disableGutters>
       <ListItemIcon>
-        { children }
+        {children}
       </ListItemIcon>
     </ListItem>
   );

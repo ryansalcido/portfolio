@@ -10,6 +10,9 @@ import List from "@material-ui/core/List";
 import ListItemIconLink from "./shared/ListItemIconLink";
 
 const useStyles = makeStyles((theme) => ({
+  aboutRoot: {
+    paddingTop: 48
+  },
   profile: {
     paddingBottom: 25
   },
@@ -32,7 +35,7 @@ const About = forwardRef((props, ref) => {
   const classes = useStyles();
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={classes.aboutRoot}>
       <Grid container>
         <Grid container item xs={12} md={4} className={classes.profile} alignItems="center" direction="column">
           <Avatar style={{ width: 200, height: 200 }}>RS</Avatar>
@@ -57,7 +60,7 @@ const About = forwardRef((props, ref) => {
           <Typography variant="body1" paragraph>
             I am a DevSecOps Engineer at Raft with a Bachelor of Science, Computer Science from 
             California State University, Sacramento. My previous experience consists of positions in
-            the public and private sector utilizing Java, JavaScript, Python to develop standalone applications
+            the public and private sector utilizing Java, JavaScript, Python to develop standalone
             and web applications.
           </Typography>
           <Typography variant="body1" paragraph>
