@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3)
   },
   nameHeader: {
+    paddingTop: 48,
     [theme.breakpoints.down("md")]: {
       fontSize: "9vw"
     }

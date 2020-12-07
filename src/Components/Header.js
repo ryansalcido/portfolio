@@ -32,14 +32,6 @@ const scrollTo = element => {
   });
 };
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth"
-  });
-};
-
 const Header = forwardRef(({ sectionRefs, visibleSection }, ref) => {
   const classes = useStyles();
 
@@ -49,7 +41,7 @@ const Header = forwardRef(({ sectionRefs, visibleSection }, ref) => {
         <Toolbar className={classes.toolbar}>
           <Grid container justify="center">
             <Button className={`${classes.headerButton} ${visibleSection === 0 && classes.selected}`}
-              onClick={scrollToTop}>
+              onClick={() => scrollTo(sectionRefs[0].ref.current)}>
               Home
             </Button>
             <Button className={`${classes.headerButton} ${visibleSection === 1 && classes.selected}`}
@@ -71,10 +63,6 @@ const Header = forwardRef(({ sectionRefs, visibleSection }, ref) => {
           </Grid>
         </Toolbar>
       </AppBar>
-      {/* Placeholder div due to having a fixed header. Without this, text would appear behind
-      * the header. More info: https://material-ui.com/components/app-bar/#fixed-placement
-      */}
-      <div className={classes.header} />
     </Fragment>
   );
 });
